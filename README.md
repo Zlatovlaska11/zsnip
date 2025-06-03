@@ -1,4 +1,4 @@
-# zsnip
+# Zlatovlas Snippets (zsnip)
 
 💡 A minimal Neovim plugin for saving and browsing custom code snippets using Telescope.
 
@@ -25,7 +25,7 @@ Use your favorite plugin manager. For example, with `lazy.nvim`:
 ## Usage
 
 ### Commands
-```
+```vim
 :SnippetSave — Save a selected snippet (in visual mode)
 
 :SnippetShow — Show saved snippets in a Telescope picker
