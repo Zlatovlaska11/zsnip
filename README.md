@@ -26,10 +26,9 @@ Use your favorite plugin manager. For example, with `lazy.nvim`:
 
 ### Commands
 ```
-    :SnippetSave — Save a selected snippet (in visual mode)
+:SnippetSave — Save a selected snippet (in visual mode)
 
-    :SnippetShow — Show saved snippets in a Telescope picker
-
+:SnippetShow — Show saved snippets in a Telescope picker
 ```
 ### Keymaps
 
