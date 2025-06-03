@@ -45,6 +45,34 @@ function M.SaveSnippet()
   append_snippet(snippet)
 end
 
+function M.DeleteSnippet(name)
+  local filepath = vim.fn.stdpath("data") .. "/zsnip/snippets.json"
+
+  if vim.fn.filereadable(filepath) == 0 then
+    print("No snippets found.")
+    return
+  end
+
+  local lines   = vim.fn.readfile(filepath)
+  local decoded = vim.fn.json_decode(table.concat(lines, "\n"))
+  if type(decoded) ~= "table" then
+    print("Failed to parse snippets.json")
+    return
+  end
+  local snippets = decoded
+
+  local new_snippets = {}
+  for _, snippet in ipairs(snippets) do
+    if snippet.title ~= name then
+      table.insert(new_snippets, snippet)
+    end
+  end
+
+  local encoded = vim.fn.json_encode(new_snippets)
+
+  vim.fn.writefile({ encoded }, filepath)
+end
+
 function M.ShowSnippets()
   local filepath = vim.fn.stdpath("data") .. "/zsnip/snippets.json"
   if vim.fn.filereadable(filepath) == 0 then
@@ -97,6 +125,13 @@ function M.ShowSnippets()
 
       map("i", "<CR>", insert_selected_snippet)
       map("n", "<CR>", insert_selected_snippet)
+      map("i", "<C-d>", function(prompt_bufnr)
+        local entry = action_state.get_selected_entry()
+
+        require("zsnip.core").DeleteSnippet(entry.value.title)
+
+        actions.close(prompt_bufnr)
+      end)
       return true
     end,
   }):find()
