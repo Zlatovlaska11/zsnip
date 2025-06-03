@@ -5,10 +5,12 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
+local config = require("zsnip.config")
+
 local M = {}
 
 local function append_snippet(snippet)
-  local path = vim.fn.stdpath("data") .. "/zsnip/snippets.json"
+  local path = config.options.snippet_path
 
   local snippets = {}
   if vim.fn.filereadable(path) == 1 then
@@ -46,7 +48,7 @@ function M.SaveSnippet()
 end
 
 function M.DeleteSnippet(name)
-  local filepath = vim.fn.stdpath("data") .. "/zsnip/snippets.json"
+  local filepath = config.options.snippet_path
 
   if vim.fn.filereadable(filepath) == 0 then
     print("No snippets found.")
@@ -74,7 +76,8 @@ function M.DeleteSnippet(name)
 end
 
 function M.ShowSnippets()
-  local filepath = vim.fn.stdpath("data") .. "/zsnip/snippets.json"
+  local filepath = config.options.snippet_path
+
   if vim.fn.filereadable(filepath) == 0 then
     print("No snippets found.")
     return

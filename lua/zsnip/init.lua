@@ -1,6 +1,9 @@
 local M = {}
 
-function M.setup()
+local config = require("zsnip.config")
+
+function M.setup(opts)
+  config.setup(opts)
   vim.api.nvim_create_user_command("SnippetSave", function()
     require("zsnip.core").SaveSnippet()
   end, {
@@ -10,6 +13,8 @@ function M.setup()
   vim.api.nvim_create_user_command("SnippetShow", function()
     require("zsnip.core").ShowSnippets()
   end, {})
+
+  vim.keymap.set("v", "<leader>ss", ":SnippetSave<CR>", { noremap = true, silent = true })
 end
 
 return M
