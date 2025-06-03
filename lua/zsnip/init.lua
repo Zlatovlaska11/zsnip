@@ -13,8 +13,6 @@ function M.setup(opts)
   vim.api.nvim_create_user_command("SnippetShow", function()
     require("zsnip.core").ShowSnippets()
   end, {})
-
-  vim.keymap.set("v", "<leader>ss", ":SnippetSave<CR>", { noremap = true, silent = true })
 end
 
 return M
