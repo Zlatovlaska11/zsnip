@@ -1,0 +1,2 @@
+require("zsnip").setup()
+
