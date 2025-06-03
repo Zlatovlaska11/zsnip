@@ -18,7 +18,11 @@ Use your favorite plugin manager. For example, with `lazy.nvim`:
 {
   "Zlatovlaska11/zsnip",
   config = function()
-    require("zsnip").setup()
+    require("zsnip").setup({
+        -- the default location is in ~/.local/share/nvim/zsnip/snippets.json
+        -- if you would like the override the path there is the snippet_path opt
+        -- snippet_path = "/home/yourname/.config/nvim/snippets.json"
+    })
   end,
 }
 ```
