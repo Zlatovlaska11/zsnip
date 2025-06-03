@@ -36,6 +36,8 @@ You can add this to your config to save snippets easily:
 
 ```lua 
 vim.keymap.set("v", "<leader>ss", ":SnippetSave<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>zs", ":SnippetShow<CR>", { noremap = true, silent = true })
 ```
 
 
